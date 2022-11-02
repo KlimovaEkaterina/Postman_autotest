@@ -1,0 +1,49 @@
+// ссылка на коллекцию https://www.getpostman.com/collections/7d7a0a7ed7ed581fa185
+
+//autotest for method https://swapi.dev/api/planets/7/
+
+pm.test("Response contains name Endor", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.name).to.eql("Endor");
+});
+
+pm.test("Body matches string temperate", function () {
+    pm.expect(pm.response.text()).to.include("temperate");
+});
+
+pm.test("Response time is less than 2000ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(2000);
+});
+
+
+
+//autotest for method https://swapi.dev/api/people/10/
+
+pm.test("Response contains name is Obi-Wan Kenobi", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.name).to.eql("Obi-Wan Kenobi");
+});
+
+pm.test("Response time is less than 2000ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(2000);
+});
+pm.test("Status code is not 500, 501, 502", function () {
+    pm.response.to.not.have.status(500,501,502);
+});
+
+
+
+//autotest for method https://swapi.dev/api/starships/5/
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Body matches string 1 month", function () {
+    pm.expect(pm.response.text()).to.include("1 month");
+});
+
+pm.test("Response contains model Sentinel-class landing craft", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.model).to.eql("Sentinel-class landing craft");
+});
